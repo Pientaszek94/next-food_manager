@@ -1,0 +1,24 @@
+.hero{
+  overflow: hidden;
+  height: fit-content;
+  h1{
+      font-size: min(19vw, 200px);
+      font-weight:900;
+      opacity:1;
+      line-height:0.8;
+      font-weight: bolder;
+      background-clip: text;
+      -webkit-background-clip: text;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      -webkit-text-fill-color: transparent; 
+      background-image: url(http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRq1mQLx2tcZ4owspN_OxqcHZBIc0f1F6NfiqBYgGnwEkdc3tbUGKETWmBH2PNppLs-dJJAt92vs2I16Eno7ks);    
+  }
+}
+
+
+@media (prefers-color-scheme: light) {
+
+}

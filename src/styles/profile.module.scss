@@ -1,0 +1,75 @@
+// when changing dimensions of user img 
+.profile{
+     --img-edge: 100px;
+     --border-line:5px; 
+     --background-dark: #090c07;
+     --button-edge: 40px;
+     height: fit-content;
+ }
+ 
+ .user_hero{
+         position: relative;
+         width: 100%;
+         height: max(40vw, 200px);
+         max-height: 300px;
+         margin-bottom:
+             calc(5px + (var(--img-edge)/2 + var(--border-line)));
+         background-attachment: fixed;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         background-image: 
+             url(http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRq1mQLx2tcZ4owspN_OxqcHZBIc0f1F6NfiqBYgGnwEkdc3tbUGKETWmBH2PNppLs-dJJAt92vs2I16Eno7ks);    
+ 
+         .user_img{
+             position: absolute;
+             left: 
+                 calc(50% - (var(--img-edge) + 2 * var(--border-line))/2);
+             bottom:
+                 calc((-1) * (var(--img-edge)/2 + var(--border-line)));
+             background-position: center;
+             background-repeat: no-repeat;
+             background-size: cover;
+             background-color: yellow;
+             width: var(--img-edge);
+             height: var(--img-edge);
+             border: var(--border-line) solid var(--background-dark);
+             border-radius: 
+                 calc((var(--img-edge)/2) + (var(--border-line) * 2));
+ 
+             display: flex;
+             flex-direction: column;
+             justify-content: flex-end;
+             align-items:flex-end;
+             
+         }       
+ }
+ 
+ 
+ .grid_container{
+     display: grid;
+     // background-color: blue;
+     width: 100%;
+     grid-template-columns: repeat(auto-fit, minmax(min(21rem,100%),1fr));
+     grid-auto-rows: min-content;
+     grid-gap: var(--grid-gap);
+     padding: 7px;
+ 
+ }
+ 
+ 
+ @media (prefers-color-scheme: light) {
+ 
+     .user_hero{
+ 
+         .user_img{
+         
+             border: var(--border-line) solid white;
+             
+         }       
+ }
+ 
+ 
+ }
+ 
+ 

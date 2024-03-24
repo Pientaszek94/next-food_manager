@@ -1,0 +1,26 @@
+.input_file{
+    &::-webkit-file-upload-button{
+        color: white;
+        background-color: orange;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        
+    }
+}
+
+.textarea{
+    width: 95%;
+    border: none;
+    border-radius:10px;
+    font-size: 12px;
+    resize: none;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    padding: 5px;
+}
+
+@media (prefers-color-scheme: light) {
+    .textarea{
+        border: 1px solid aqua
+    }
+}

@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Welcome!
+This is FoodManager app that is simply Cookbook now, but its server and client side are a bit advanced. Here you can find Flask, JWT, MongoDB, React, GraphQL, Redux Toolkit, simple cookies, cropped images, Axios etc.. This first phase is to show how things can be combined. Next phase will be much more than a cookbook because it is highly possible phase 2 will contain AI and subscribe modules.
 
-## Getting Started
+## Technologies
+Project is created with:
+* Python 3.11
+* Node.js 21.1.0
+* Next.js 14.1.3
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## App Installation
+To run this project, your machine should have Python3 and Node.js. 
+Please install the app using npm:
+```
+$ npm install
+$ npm run build-api
+$ npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+When everything is going to be fine after installation and first start, you should visit "http://localhost:3000/" because there you can find the app. The server side will run on port 8000, because of custom command in "package.json".
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The whole main page of the app should look something like this
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+![Screenshot](./images/image1.png)
 
-## Learn More
+## User experience
 
-To learn more about Next.js, take a look at the following resources:
+Feel free to try it. You can sign up (you can use fake data, there is no validation via email message) and create your own profile by adding profile image or typing description. You can try also two versions of modals poping up when select recipe. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
