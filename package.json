@@ -8,7 +8,9 @@
     "dev": "concurrently -n 'next.js,flask' -c 'blue, green' \"npm run next-dev\" \"npm run build-api\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --check --ignore-path .gitignore .",
+    "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
     "@apollo/client": "^3.9.7",

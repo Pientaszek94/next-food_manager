@@ -1,147 +1,136 @@
+.post {
+  --shadow-post: inset 2px 150px 100px -100px rgba(0, 0, 0, 1);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 
-        .post{
-            --shadow-post:inset 2px 150px 100px -100px rgba(0, 0, 0, 1);
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            
-            div{
-                -webkit-box-shadow: var(--shadow-post);
-                -moz-box-shadow:var(--shadow-post);
-                box-shadow: var(--shadow-post);
-                width:100%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                
-            } 
-            .timer{
-                position: absolute;
-                left: 10px;
-                top: 10px;
-                font-size: 15px;
-            }
-            .heart{
-                // display: flex;
-                position: absolute;
-                align-items: center;
-                justify-content: center;
-                height: 50px;
-                width: 50px;
-                z-index: 2;
-                cursor: pointer;
-                span{
-                    transform: rotateZ(0deg);
-                    transition: font-size 0.1s ease-in-out;
-                } 
-                &:active span{
-                    font-size: 40px;
-                }
-            }
-            
-            h5{
-                position: absolute;
-                left:0;
-                bottom: 0;
-                padding-left: 5px;
-                width: 100%;
-                height: 20%;
-                font-size: min(3vw, 15px);
-                font-weight: 500;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                cursor: pointer;
-            }   
-        }
-     
+  div {
+    -webkit-box-shadow: var(--shadow-post);
+    -moz-box-shadow: var(--shadow-post);
+    box-shadow: var(--shadow-post);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .timer {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 15px;
+  }
+  .heart {
+    // display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    z-index: 2;
+    cursor: pointer;
+    span {
+      transform: rotateZ(0deg);
+      transition: font-size 0.1s ease-in-out;
+    }
+    &:active span {
+      font-size: 40px;
+    }
+  }
 
-    @keyframes heart-shake {
-        0%{
-            transform: rotateZ(0deg);
-        }
-        25%{
-            transform: rotateZ(-40deg)
-        }
-        75%{
-            transform: rotateZ(40deg)
-        }
-        100%{
-            transform: rotateZ(0deg);
-        }
-        
+  h5 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding-left: 5px;
+    width: 100%;
+    height: 20%;
+    font-size: min(3vw, 15px);
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+}
+
+@keyframes heart-shake {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateZ(-40deg);
+  }
+  75% {
+    transform: rotateZ(40deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .blacken {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.2;
+    cursor: pointer;
+  }
+
+  .heart {
+    // display: flex;
+    position: absolute;
+    display: flex;
+    right: 10px;
+    top: 10px;
+    span {
+      font-size: 30px;
+      // -webkit-text-fill-color: red;
+      transform: rotateZ(0deg);
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .post {
+    .blacken {
+      display: none;
     }
 
-    @media screen and (max-width:991px) {
-               
-        .blacken{
-            display: block;
-            width:100%;
-            height: 100%;
-            background-color: black;
-            opacity: 0.2;
-            cursor: pointer;
-        }
-
-        .heart{
-            // display: flex;
-            position: absolute;
-            display: flex;
-            right: 10px;
-            top: 10px;
-            span{
-                font-size: 30px;
-                // -webkit-text-fill-color: red;
-                transform: rotateZ(0deg);
-            } 
-            
-        } 
-
+    &:hover .blacken {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0.2;
+      cursor: pointer;
+    }
+    .timer {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      font-size: 15px;
+      color: white;
+    }
+    &:hover .heart {
+      display: flex;
+    }
+    .heart {
+      display: none;
+      span {
+        font-size: 50px;
+      }
     }
 
-    @media screen and (min-width:992px) {
-
-        .post{
-
-            .blacken{
-                display: none;
-            }
-
-            &:hover .blacken{
-                display: block;
-                width:100%;
-                height: 100%;
-                background-color: black;
-                opacity: 0.2;
-                cursor: pointer;
-            }
-            .timer{
-                position: absolute;
-                left: 10px;
-                top: 10px;
-                font-size: 15px;
-                color: white;
-            }
-            &:hover .heart{
-                display: flex;
-            }
-            .heart{
-                display: none;
-                span{
-                    font-size: 50px;
-                }
-            }
-                                
-            &:hover .heart span{
-                animation: heart-shake 1s forwards ease;
-            } 
-        }
-             
-        
+    &:hover .heart span {
+      animation: heart-shake 1s forwards ease;
     }
+  }
+}
