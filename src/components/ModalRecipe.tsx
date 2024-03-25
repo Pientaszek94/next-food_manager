@@ -19,7 +19,7 @@ function ModalRecipe({postsList, userInfo}:{postsList:any[], userInfo:userInfoIn
     useEffect(()=>{
         setCurrentRecipe(postsList?.findIndex((obj)=> obj.slug==recipe))
         setCheckedIndex(postsList?.findIndex((obj)=> obj.slug==recipe))
-      },[recipe])
+      },[recipe, postsList])
 
     const nextRecipe=()=>{
         router.push(pathname+"?recipe="+postsList[currentRecipe!+1]?.slug)

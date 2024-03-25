@@ -26,7 +26,7 @@ function ModalRegister() {
 
   useEffect(()=>{
     if(registerModal&&success&&userInfo){
-      redirect(pathname)
+      redirect('/home')
     }
   },[success])
 

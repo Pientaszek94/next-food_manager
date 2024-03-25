@@ -51,7 +51,7 @@ function Profile(props:{userInfo:userInfoInterface, postsList:any[]}) {
         <main>
             <div className={styles.user_hero}>
                 <div className={styles.user_img} 
-                    style={{backgroundImage:`url(${userInfo?.image!==''? noprofile : userInfo?.image})`}}>
+                    style={{backgroundImage:`url(${!userInfo?.image? noprofile : userInfo?.image})`}}>
                     <div className='small-btn orange' onClick={()=>openModal()}>
                         <span className="material-symbols-outlined">
                             add

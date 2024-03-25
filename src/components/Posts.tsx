@@ -22,7 +22,7 @@ function Posts(props:{postsList:any[], userInfo?:userInfoInterface|null}) {
         if(pathname.includes("user")){
             console.log("Pathname user posts", postsList)
         }
-    },[postsList])
+    },[postsList, pathname])
 
     const loadMore=()=>{
         setPostIndex(prevState=>prevState+6)
