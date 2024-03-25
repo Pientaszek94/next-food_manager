@@ -1,4 +1,3 @@
-import React, { useRef } from 'react'
 import styles from '../styles/user_dialog.module.scss'
 
 function Dialog({dialogRef, children}:{dialogRef:any, children: React.ReactNode}) {

@@ -1,5 +1,4 @@
 'use client'
-import React, { useEffect, useState } from 'react'
 import styles from "../styles/post.module.scss"
 import { userInfoInterface } from '../../utils/interfaces'
 import { useMutation } from '@apollo/client'
@@ -8,7 +7,6 @@ import { usePullUserRecipesMutation, usePushUserRecipesMutation } from '@/redux/
 import { useDispatch } from 'react-redux'
 import { usePathname, useRouter } from 'next/navigation'
 import { pullRecipe, pushRecipe } from '@/redux/features/authSlice'
-import Link from 'next/link'
 
 function Post(props:{post:any, postsList:any[] ,userInfo:userInfoInterface|null|undefined}) {
     const [updatePost]=useMutation(UPDATE_POST)
@@ -36,7 +34,7 @@ function Post(props:{post:any, postsList:any[] ,userInfo:userInfoInterface|null|
       if(indexRecipe==-1){
         ++postsLikes
         await pushUserRecipes({recipes:post.slug}).unwrap()
-              .then((payload)=>{
+              .then(()=>{
                 console.log("Success PUSH ", post.slug)
                 dispatch(pushRecipe(post.slug))
                 updatePost({variables:{likes:postsLikes, id: post.id}})
@@ -45,7 +43,7 @@ function Post(props:{post:any, postsList:any[] ,userInfo:userInfoInterface|null|
       else {
         --postsLikes
         await pullUserRecipes({recipes:post.slug}).unwrap()
-        .then((payload)=>{
+        .then(()=>{
           console.log("Success PULL ", post.slug)
           dispatch(pullRecipe(post.slug))
           updatePost({variables:{likes:postsLikes, id: post.id}})

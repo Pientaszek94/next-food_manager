@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/posts.module.scss'
 import alterStyles from '../styles/recipes_tiles.module.scss'
 import { userInfoInterface } from '../../utils/interfaces'
@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Post } from '.'
 
 function Posts(props:{postsList:any[], userInfo?:userInfoInterface|null}) {
-    const {postsList, userInfo}:{postsList:any[], userInfo?:userInfoInterface|null}=props
+    const {postsList}:{postsList:any[]}=props
     const [posts, setPosts]=useState<any[]>([])
     const  pathname=usePathname()
     const [postIndex, setPostIndex]=useState<number>(14)

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 function Error({children, ...props}:{children: ReactNode, props?:any}) {
   return (
