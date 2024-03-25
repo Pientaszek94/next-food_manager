@@ -5,7 +5,7 @@ import modalStyles from "../styles/modal_recipes.module.scss"
 import Logo from './Logo'
 import { userInfoInterface } from '../../utils/interfaces'
 function ModalRecipe({postsList, userInfo}:{postsList:any[], userInfo:userInfoInterface|null}) {
-    const recipe=useSearchParams().get("recipe")
+    const recipe=useSearchParams()!.get("recipe")
     const pathname=usePathname()
     const router=useRouter()
     const [checkedIndex, setCheckedIndex]=useState<number|null>()
@@ -74,7 +74,7 @@ function ModalRecipe({postsList, userInfo}:{postsList:any[], userInfo:userInfoIn
                     </span>
                 </button>
                 <button className={modalStyles.transp_bg} 
-                            onClick={()=>router.push(pathname)}>
+                            onClick={()=>router.push(pathname!)}>
                     <span className="material-symbols-outlined">
                         close
                     </span>

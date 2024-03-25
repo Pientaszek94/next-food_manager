@@ -19,7 +19,7 @@ function Posts(props:{postsList:any[], userInfo?:userInfoInterface|null}) {
                 setPosts((prevPosts)=>prevPosts.concat(postsList[1]))
             }
         }
-        if(pathname.includes("user")){
+        if(pathname!.includes("user")){
             console.log("Pathname user posts", postsList)
         }
     },[postsList, pathname])
@@ -28,7 +28,7 @@ function Posts(props:{postsList:any[], userInfo?:userInfoInterface|null}) {
         setPostIndex(prevState=>prevState+6)
     }
     
-    if(pathname.includes('home')){
+    if(pathname!.includes('home')){
         return (
             <div className={styles.posts}>
                 <div className={styles.grid_posts}>
@@ -70,7 +70,7 @@ function Posts(props:{postsList:any[], userInfo?:userInfoInterface|null}) {
     else{
         return (
             <div className={alterStyles.recipes}>
-                            {
+                            {/* {
                     postsList
                     .filter((post)=>{
                         const isIndex=userInfo?.recipes
@@ -84,12 +84,12 @@ function Posts(props:{postsList:any[], userInfo?:userInfoInterface|null}) {
                       return  <Post {...props} post={post} key={i}/>
 
                     })
-                }
-                {/* {
+                } */}
+                {
                     postsList.map((post, i)=>(
                         <Post {...props} post={post} key={i}/>
                     ))
-                } */}
+                }
         </div>
         )
     }

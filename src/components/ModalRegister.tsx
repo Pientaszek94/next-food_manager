@@ -11,7 +11,7 @@ import Spinner from './Spinner'
 function ModalRegister() {
   
 
-  const registerModal=useSearchParams().get("registerModal")
+  const registerModal=useSearchParams()!.get("registerModal")
   const pathname=usePathname()
   const [signUp, setSignUp]=useState<boolean>(true)
   const [customError, setCustomError]=useState<string | null>(null)
@@ -28,7 +28,7 @@ function ModalRegister() {
     if(registerModal&&success&&userInfo){
       redirect('/home')
     }
-  },[success])
+  },[success, registerModal, userInfo])
 
   const dispatch=useAppDispatch()
   const {register, handleSubmit}=useForm()
@@ -57,7 +57,7 @@ function ModalRegister() {
       <div className={styles.modalregister}>
         <main>
           <form onSubmit={handleSubmit(submitForm)}>
-            <Link href={pathname}>BACK TO MAIN PAGE</Link>
+            <Link href={pathname!}>BACK TO MAIN PAGE</Link>
             <h1>{signUp?"REGISTER":"Sign In"}</h1>
             {error&& <Error>{error}</Error>}
             {customError && <Error>{customError}</Error>}
