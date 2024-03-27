@@ -60,8 +60,8 @@ function Posts(props: {
   } else {
     return (
       <div className={alterStyles.recipes}>
-        {postsList.map((post, i) => (
-          <Post {...props} post={post} key={i} />
+        {postsList.map((post) => (
+          <Post {...props} post={post} key={post.slug} />
         ))}
       </div>
     );
