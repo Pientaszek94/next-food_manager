@@ -16,13 +16,13 @@ export default function Home() {
   const posts = postsApi?.data?.posts;
 
   return (
-    <div className={`${styles.home}`}>
+    <div className={styles.home}>
       <main>
         <div className={styles.hero}>
           <h1>MINIMUM EFFORT MAXIMUM JOY</h1>
         </div>
         <Posts postsList={posts} userInfo={userInfo} />
-        <ModalRecipe postsList={posts} userInfo={userInfo} />
+        <ModalRecipe postsList={posts} />
       </main>
     </div>
   );

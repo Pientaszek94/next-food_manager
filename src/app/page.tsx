@@ -1,4 +1,5 @@
 "use client";
+import Spinner from "@/components/Spinner";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -10,7 +11,7 @@ function NotHome() {
       router.push("/home");
     }
   }, [pathname, router]);
-  return <div>page</div>;
+  return <Spinner />;
 }
 
 export default NotHome;

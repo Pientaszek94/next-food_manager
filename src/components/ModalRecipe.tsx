@@ -3,6 +3,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import modalStyles from "../styles/modal_recipes.module.scss";
 import Logo from "./Logo";
+import RecipePreviewSLider from "./styled/RecipePreviewSlider";
+import { RecipeSlider } from "./styled";
 
 function ModalRecipe({ postsList }: { postsList: any[] }) {
   const recipe = useSearchParams()!.get("recipe");
@@ -10,11 +12,6 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
   const router = useRouter();
   const [checkedIndex, setCheckedIndex] = useState<number | null>();
   const [currentRecipe, setCurrentRecipe] = useState<number | null>();
-
-  console.log("RECIPE", recipe);
-
-  console.log("checkedIndex", checkedIndex);
-  console.log("currentRecipe", currentRecipe);
 
   useEffect(() => {
     setCurrentRecipe(postsList?.findIndex((obj) => obj.slug == recipe));
@@ -53,19 +50,18 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
             <span className="material-symbols-outlined">arrow_back</span>
           </button>
           <div className={modalStyles.recipe_previews_container}>
-            <div
-              className={modalStyles.slider}
-              style={{
-                height: `${47 * postsList?.length}px`,
-                marginTop: `${-47 * checkedIndex!}px`,
-              }}
+            <RecipePreviewSLider
+              $postsLength={postsList?.length}
+              $checkedIndex={checkedIndex}
             >
               {postsList?.map((recipe: any) => (
                 <div className={modalStyles.slides} key={recipe.id}>
-                  <h4>{recipe?.title.toUpperCase()}</h4>
+                  <h4 className={modalStyles.recipe__title}>
+                    {recipe?.title.toUpperCase()}
+                  </h4>
                 </div>
               ))}
-            </div>
+            </RecipePreviewSLider>
           </div>
           <button
             className="orange"
@@ -87,14 +83,11 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
             <span className="material-symbols-outlined">close</span>
           </button>
         </header>
-        <div className={modalStyles.recipe_grid}>
-          <div className={modalStyles.image_carousel}>
-            <div
-              className={modalStyles.slider}
-              style={{
-                width: `${100 * postsList?.length}%`,
-                marginLeft: `${-100 * currentRecipe!}%`,
-              }}
+        <div className={modalStyles.recipe__grid}>
+          <div className={modalStyles.image__carousel}>
+            <RecipeSlider
+              $postsLength={postsList?.length}
+              $currentRecipe={currentRecipe}
             >
               {postsList?.map((recipe) => (
                 <div
@@ -107,20 +100,17 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
                   }}
                 ></div>
               ))}
-            </div>
+            </RecipeSlider>
           </div>
-          <div className={modalStyles.recipes_carousel}>
-            <div
-              className={modalStyles.slider}
-              style={{
-                width: `${100 * postsList?.length}%`,
-                marginLeft: `${-100 * currentRecipe!}%`,
-              }}
+          <div className={modalStyles.recipes__carousel}>
+            <RecipeSlider
+              $postsLength={postsList?.length}
+              $currentRecipe={currentRecipe}
             >
               {postsList?.map((recipe) => (
                 <div className={modalStyles.slides} key={recipe.id}>
                   <div className={modalStyles.info_recipe}>
-                    <h4>
+                    <h4 className={modalStyles.recipe__favorite}>
                       <span className="material-symbols-outlined">
                         favorite
                       </span>
@@ -137,11 +127,13 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
                       {" " + recipe.portions}
                     </h4>
                   </div>
-                  <div className={modalStyles.desc_recipe}>
+                  <div className={modalStyles.description_recipe}>
                     <div>
                       <h2>FM</h2>
                     </div>
-                    <h4>{recipe.description + " "}</h4>
+                    <h4 className={modalStyles.description__text}>
+                      {recipe.description}
+                    </h4>
                   </div>
                   <div className={modalStyles.recipe_list_steps}>
                     <div className={modalStyles.recipe_list}>
@@ -153,7 +145,7 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
                       />
                     </div>
 
-                    <div className={modalStyles.recipe_steps}>
+                    <div className={modalStyles.recipe__steps}>
                       <h3>Recipes Steps</h3>
                       <div
                         dangerouslySetInnerHTML={{
@@ -164,7 +156,7 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
                   </div>
                 </div>
               ))}
-            </div>
+            </RecipeSlider>
           </div>
         </div>
       </div>

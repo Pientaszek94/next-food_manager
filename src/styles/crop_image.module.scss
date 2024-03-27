@@ -1,9 +1,16 @@
-.image_console {
+.cropimage_console {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: min-content;
+  .cropimage__canvas {
+    display: none;
+    border: 1px solid black;
+    object-fit: contain;
+    width: 50;
+    height: 50;
+  }
   & > div {
     width: 100%;
     min-height: 200px;
@@ -12,8 +19,5 @@
     align-items: center;
     justify-content: center;
     transition: min-height 4s ease-in-out;
-    h5 {
-      width: min-content;
-    }
   }
 }

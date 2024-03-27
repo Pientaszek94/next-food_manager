@@ -21,9 +21,6 @@ function Posts(props: {
         setPosts((prevPosts) => prevPosts.concat(postsList[1]));
       }
     }
-    if (pathname!.includes("user")) {
-      console.log("Pathname user posts", postsList);
-    }
   }, [postsList, pathname]);
 
   const loadMore = () => {
@@ -63,21 +60,6 @@ function Posts(props: {
   } else {
     return (
       <div className={alterStyles.recipes}>
-        {/* {
-                    postsList
-                    .filter((post)=>{
-                        const isIndex=userInfo?.recipes
-                                ?.findIndex((recipe:string)=>post.slug==recipe)
-                        if(isIndex!=-1){
-                            return post
-                        }
-                    })
-                    .map((post, i)=>{
-                        
-                      return  <Post {...props} post={post} key={i}/>
-
-                    })
-                } */}
         {postsList.map((post, i) => (
           <Post {...props} post={post} key={i} />
         ))}

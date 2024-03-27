@@ -26,7 +26,6 @@
     font-size: 15px;
   }
   .heart {
-    // display: flex;
     position: absolute;
     align-items: center;
     justify-content: center;
@@ -43,7 +42,7 @@
     }
   }
 
-  h5 {
+  .post__title {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -85,14 +84,12 @@
   }
 
   .heart {
-    // display: flex;
     position: absolute;
     display: flex;
     right: 10px;
     top: 10px;
     span {
       font-size: 30px;
-      // -webkit-text-fill-color: red;
       transform: rotateZ(0deg);
     }
   }

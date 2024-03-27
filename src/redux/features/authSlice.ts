@@ -1,8 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import {
-  AuthStateInterface,
-  userInfoInterface,
-} from "../../../utils/interfaces";
+import { AuthStateInterface } from "../../../utils/interfaces";
 import { registerUser, userLogin } from "./authActions";
 import { deleteCookie, getCookie, hasCookie } from "cookies-next";
 
@@ -31,20 +28,14 @@ const authSlice = createSlice({
       state.userInfo = payload.data;
     },
     updateUserInfo: (state, { payload }) => {
-      //seamless changes
-
       Object.keys(payload).forEach((key) => {
         state.userInfo![key] = payload[key];
       });
     },
     pushRecipe: (state, { payload }) => {
-      //seamless changes
-
       state.userInfo!.recipes = [...state.userInfo!.recipes, payload];
     },
     pullRecipe: (state, { payload }: PayloadAction<string>) => {
-      //seamless changes
-
       state.userInfo = {
         ...(state.userInfo as any),
         recipes: state.userInfo!.recipes.filter(
@@ -54,8 +45,6 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // userLOGIN !!!!
-
     builder.addCase(userLogin.pending, (state) => {
       state.loading = true;
       state.error = null;
@@ -79,17 +68,13 @@ const authSlice = createSlice({
       },
     );
 
-    // userREGISTER !!!!
-
     builder.addCase(registerUser.pending, (state) => {
       state.loading = true;
       state.error = null;
-      console.log("Pending Registering");
     });
     builder.addCase(registerUser.fulfilled, (state) => {
       state.loading = false;
       state.success = true;
-      console.log("Successful Registering");
     });
     builder.addCase(
       registerUser.rejected,

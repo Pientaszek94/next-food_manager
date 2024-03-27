@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import ModalRegister from "@/components/ModalRegister";
 import { ApolloProv } from "@/apollocms/apollo";
-import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 

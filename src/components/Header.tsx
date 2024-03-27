@@ -15,13 +15,9 @@ function Header() {
   const pathname = usePathname();
   const [position, setPosition] = useState<number>(scrollY);
   const [visible, setVisible] = useState<boolean>(true);
-
-  const authState = useAppSelector((state) => state.auth);
   const { userInfo } = useAppSelector((state) => ({
     userInfo: state.auth.userInfo as userInfoInterface | null,
   }));
-  console.log("userInfo", userInfo);
-
   const { data, isFetching } = useGetUserDetailsQuery("userDetails", {
     pollingInterval: 9000000,
   });

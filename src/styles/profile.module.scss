@@ -1,4 +1,3 @@
-// when changing dimensions of user img
 .profile {
   --img-edge: 100px;
   --border-line: 5px;
@@ -41,7 +40,6 @@
 
 .grid_container {
   display: grid;
-  // background-color: blue;
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(min(21rem, 100%), 1fr));
   grid-auto-rows: min-content;

@@ -1,42 +1,38 @@
 import { useState } from "react";
 import styles from "../styles/favourites.module.scss";
 import Posts from "./Posts";
+import { ButtonFavourites, SlideFavourites, SliderFavourites } from "./styled";
 
 function Favourites(props: any) {
   const { postsList } = props;
-  console.log("favPosts", postsList);
-  const [catIndex, setCatIndex] = useState<number>(0);
+  const [categoryIndex, setCategoryIndex] = useState(0);
   const categories = ["recipes", "tips"];
 
   return (
     <div className={styles.favourites}>
-      {categories.map((key, index) => (
-        <button
+      {categories.map((category, index) => (
+        <ButtonFavourites
           key={index}
-          style={{
-            borderBottom: `${catIndex == index ? "2px solid orange" : "none"}`,
-          }}
-          onClick={() => setCatIndex(index)}
+          $buttonIndex={index}
+          $categoryIndex={categoryIndex}
+          onClick={() => setCategoryIndex(index)}
         >
-          {key.charAt(0).toUpperCase() + key.slice(1)}
-        </button>
+          {category.charAt(0).toUpperCase() + category.slice(1)}
+        </ButtonFavourites>
       ))}
-      <div className={styles.carousel_container}>
-        <div
-          className={styles.slider}
-          style={{ marginLeft: `${-100 * catIndex}%` }}
-        >
+      <div className={styles.favourites__carousel_container}>
+        <SliderFavourites $categoryIndex={categoryIndex}>
           {categories.map((key, index) => (
-            <div
-              className={styles.slides}
-              style={{ opacity: `${catIndex == index ? "1" : "0"}` }}
+            <SlideFavourites
               key={index}
+              $index={index}
+              $categoryIndex={categoryIndex}
             >
               Here You can see Your favourite {key}
               {key == "recipes" ? <Posts {...props} /> : null}
-            </div>
+            </SlideFavourites>
           ))}
-        </div>
+        </SliderFavourites>
       </div>
     </div>
   );

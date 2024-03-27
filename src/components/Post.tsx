@@ -23,25 +23,21 @@ function Post(props: {
   const { userInfo, post } = props;
   const pathname = usePathname();
   const router = useRouter();
-  // const [modalPath, setModalPath]=useState('')
 
   const navigateToRecipe = () => {
     router.push(`${pathname}?recipe=${post.slug}`);
   };
 
   const updatePostsLikes = async () => {
-    console.log("Clicked Like");
     let postsLikes = post?.likes;
     const indexRecipe = userInfo!.recipes.findIndex(
       (recipe: string) => recipe == post.slug,
     );
-    console.log("index", indexRecipe);
     if (indexRecipe == -1) {
       ++postsLikes;
       await pushUserRecipes({ recipes: post.slug })
         .unwrap()
         .then(() => {
-          console.log("Success PUSH ", post.slug);
           dispatch(pushRecipe(post.slug));
           updatePost({ variables: { likes: postsLikes, id: post.id } });
         });
@@ -50,7 +46,6 @@ function Post(props: {
       await pullUserRecipes({ recipes: post.slug })
         .unwrap()
         .then(() => {
-          console.log("Success PULL ", post.slug);
           dispatch(pullRecipe(post.slug));
           updatePost({ variables: { likes: postsLikes, id: post.id } });
         });
@@ -82,7 +77,9 @@ function Post(props: {
         <div className={styles.blacken} onClick={navigateToRecipe} />
       </div>
 
-      <h5 onClick={navigateToRecipe}>{post.title.toUpperCase()}</h5>
+      <h5 className={styles.post__title} onClick={navigateToRecipe}>
+        {post.title.toUpperCase()}
+      </h5>
     </div>
   );
 }

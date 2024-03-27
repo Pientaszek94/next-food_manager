@@ -13,8 +13,6 @@ import ModalRecipe from "./ModalRecipe";
 
 function Profile(props: { userInfo: userInfoInterface; postsList: any[] }) {
   const { userInfo } = props;
-  console.log("Profile List", props.postsList);
-  // const [deleteUser]=useDeleteUserMutation()
   const [updateUser] = useUpdateUserMutation();
   const [error, setError] = useState<any>();
   const dispatch = useAppDispatch();

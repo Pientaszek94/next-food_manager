@@ -1,13 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import styles from "../styles/modalregister.module.scss";
+import styles from "../styles/modal_register.module.scss";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useForm } from "react-hook-form";
 import { registerUser, userLogin } from "@/redux/features/authActions";
 import Link from "next/link";
 import { redirect, usePathname, useSearchParams } from "next/navigation";
-import { Error } from ".";
+import { Error } from "./styled";
 import Spinner from "./Spinner";
+
 function ModalRegister() {
   const registerModal = useSearchParams()!.get("registerModal");
   const pathname = usePathname();
@@ -39,7 +40,6 @@ function ModalRegister() {
     } else {
       dispatch(userLogin(data));
     }
-    // console.log("DATA:", data)
   };
 
   if (registerModal) {

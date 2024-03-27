@@ -8,9 +8,10 @@ import ReactCrop, {
 import setCanvasPreview from "@/setCanvasPreview";
 import Spinner from "./Spinner";
 import { useUpdateUserMutation } from "@/redux/services/authService";
-import styles from "../styles/crop_image.module.scss";
+import stylesCropImage from "../styles/crop_image.module.scss";
 import inputStyles from "../styles/profile_inputs.module.scss";
 import "react-image-crop/dist/ReactCrop.css";
+import Image from "next/image";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 50;
@@ -91,7 +92,7 @@ function CropImage({
   };
 
   return (
-    <div className={styles.image_console}>
+    <div className={stylesCropImage.cropimage_console}>
       <input
         ref={inputRef}
         className={inputStyles.input_file}
@@ -101,7 +102,7 @@ function CropImage({
         onChange={handleSelectImage}
       />
       {file ? (
-        <div>
+        <div className="cropimage__reactcrop">
           <ReactCrop
             crop={crop}
             onChange={(pixelCrop, percentCrop: PercentCrop) =>
@@ -112,12 +113,20 @@ function CropImage({
             aspect={ASPECT_RATIO}
             minWidth={MIN_DIMENSION}
           >
-            <img
+            {/* <img
               ref={imgRef}
               src={file}
               alt="Upload"
               onLoad={onImageLoad}
-              style={{ width: "100%" }}
+              className={stylesCropImage.reactcrop__to_cropp_image}
+            /> */}
+            <Image
+              ref={imgRef}
+              src={file}
+              alt="Upload"
+              onLoad={onImageLoad}
+              width={1600 / 2}
+              height={900 / 2}
             />
           </ReactCrop>
           <button className="orange long" onClick={croppAndUpdate}>
@@ -126,7 +135,9 @@ function CropImage({
         </div>
       ) : !error ? (
         <div>
-          <h4>Please select your image</h4>
+          <h4 className={stylesCropImage.cropimage_info}>
+            Please select your image
+          </h4>
         </div>
       ) : (
         <div>{error}</div>
@@ -135,6 +146,7 @@ function CropImage({
       {crop && (
         <canvas
           ref={previewCanvasRef}
+          className={stylesCropImage.cropimage__canvas}
           style={{
             display: "none",
             border: "1px solid black",
