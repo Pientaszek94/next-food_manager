@@ -1,17 +1,19 @@
 import { useRef, useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
-import { userInfoInterface } from "../../utils/interfaces";
+import { PostInterface, userInfoInterface } from "../../utils/interfaces";
 import { useUpdateUserMutation } from "@/redux/services/authService";
 import { updateUserInfo } from "@/redux/features/authSlice";
 import { CropImage, UserDialog } from ".";
-import styles from "../styles/profile.module.scss";
-import inputStyles from "../styles/profile_inputs.module.scss";
+import { profileStyles, profileInputsStyles } from "@/styles";
 import noprofile from "../../public/no-profile.svg";
 import { placeholder } from "@/placeholder";
 import Favourites from "./Favourites";
 import ModalRecipe from "./ModalRecipe";
 
-function Profile(props: { userInfo: userInfoInterface; postsList: any[] }) {
+function Profile(props: {
+  userInfo: userInfoInterface;
+  postsList: PostInterface[];
+}) {
   const { userInfo } = props;
   const [updateUser] = useUpdateUserMutation();
   const [error, setError] = useState<any>();
@@ -38,7 +40,7 @@ function Profile(props: { userInfo: userInfoInterface; postsList: any[] }) {
   };
 
   return (
-    <div className={styles.profile}>
+    <div className={profileStyles.profile}>
       <UserDialog dialogRef={dialogRef}>
         <CropImage
           handleChange={handleChange}
@@ -49,9 +51,9 @@ function Profile(props: { userInfo: userInfoInterface; postsList: any[] }) {
       </UserDialog>
       <ModalRecipe {...props} />
       <main>
-        <div className={styles.user_hero}>
+        <div className={profileStyles.user_hero}>
           <div
-            className={styles.user_img}
+            className={profileStyles.user_img}
             style={{
               backgroundImage: `url(${!userInfo?.image ? noprofile : userInfo?.image})`,
             }}
@@ -61,8 +63,8 @@ function Profile(props: { userInfo: userInfoInterface; postsList: any[] }) {
             </div>
           </div>
         </div>
-        <div className={styles.grid_container}>
-          <div className={styles.user_info}>
+        <div className={profileStyles.grid_container}>
+          <div className={profileStyles.user_info}>
             <h4>{userInfo?.name!.toUpperCase()}</h4>
             <h6 style={{ opacity: "0.5" }}>{userInfo?.email}</h6>
             <textarea
@@ -74,7 +76,7 @@ function Profile(props: { userInfo: userInfoInterface; postsList: any[] }) {
               maxLength={500}
               onChange={(e) => setDescription(e.target.value)}
               onBlur={() => handleChange({ desc: description })}
-              className={inputStyles.textarea}
+              className={profileInputsStyles.textarea}
             />
 
             <h6 style={{ textAlign: "right", opacity: "0.3" }}>

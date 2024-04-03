@@ -1,8 +1,8 @@
 import Link from "next/link";
-import styles from "../styles/logo.module.scss";
+import { logoStyles } from "@/styles";
 function Logo() {
   return (
-    <Link href="/home" className={`${styles.logo}`}>
+    <Link href="/home" className={`${logoStyles.logo}`}>
       <span>FOOD</span>
       <p>MANAGER</p>
     </Link>

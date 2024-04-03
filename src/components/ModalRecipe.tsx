@@ -1,7 +1,7 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import modalStyles from "../styles/modal_recipes.module.scss";
+import { mRecipesStyles } from "@/styles";
 import Logo from "./Logo";
 import RecipePreviewSLider from "./styled/RecipePreviewSlider";
 import { RecipeSlider } from "./styled";
@@ -37,8 +37,8 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
 
   if (recipe) {
     return (
-      <div className={modalStyles.modal_recipes}>
-        <header className={modalStyles.head}>
+      <div className={mRecipesStyles.modal_recipes}>
+        <header className={mRecipesStyles.head}>
           <Logo />
           <button
             className="orange"
@@ -49,14 +49,14 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
           >
             <span className="material-symbols-outlined">arrow_back</span>
           </button>
-          <div className={modalStyles.recipe_previews_container}>
+          <div className={mRecipesStyles.recipe_previews_container}>
             <RecipePreviewSLider
               $postsLength={postsList?.length}
               $checkedIndex={checkedIndex}
             >
               {postsList?.map((recipe: any) => (
-                <div className={modalStyles.slides} key={recipe.id}>
-                  <h4 className={modalStyles.recipe__title}>
+                <div className={mRecipesStyles.slides} key={recipe.id}>
+                  <h4 className={mRecipesStyles.recipe__title}>
                     {recipe?.title.toUpperCase()}
                   </h4>
                 </div>
@@ -77,21 +77,21 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
             <span className="material-symbols-outlined">arrow_forward</span>
           </button>
           <button
-            className={modalStyles.transp_bg}
+            className={mRecipesStyles.transp_bg}
             onClick={() => router.push(pathname!)}
           >
             <span className="material-symbols-outlined">close</span>
           </button>
         </header>
-        <div className={modalStyles.recipe__grid}>
-          <div className={modalStyles.image__carousel}>
+        <div className={mRecipesStyles.recipe__grid}>
+          <div className={mRecipesStyles.image__carousel}>
             <RecipeSlider
               $postsLength={postsList?.length}
               $currentRecipe={currentRecipe}
             >
               {postsList?.map((recipe) => (
                 <div
-                  className={modalStyles.slides}
+                  className={mRecipesStyles.slides}
                   key={recipe.id}
                   style={{
                     backgroundImage: `url(${recipe.foodImages[0]?.url})`,
@@ -102,42 +102,44 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
               ))}
             </RecipeSlider>
           </div>
-          <div className={modalStyles.recipes__carousel}>
+          <div className={mRecipesStyles.recipes__carousel}>
             <RecipeSlider
               $postsLength={postsList?.length}
               $currentRecipe={currentRecipe}
             >
               {postsList?.map((recipe) => (
-                <div className={modalStyles.slides} key={recipe.id}>
-                  <div className={modalStyles.info_recipe}>
-                    <h4 className={modalStyles.recipe__favorite}>
+                <div className={mRecipesStyles.slides} key={recipe.id}>
+                  <div className={mRecipesStyles.info_recipe}>
+                    <h4 className={mRecipesStyles.recipe__favorite}>
                       <span className="material-symbols-outlined">
                         favorite
                       </span>
                       {" " + recipe.likes}
                     </h4>
-                    <h4 className={modalStyles.timer}>
+                    <h4 className={mRecipesStyles.timer}>
                       <span className="material-symbols-outlined">timer</span>
                       {" " + recipe.cookingTime + " mins"}
                     </h4>
-                    <h4 className={modalStyles.portions}>
+                    <h4 className={mRecipesStyles.portions}>
                       <span className="material-symbols-outlined">
                         safety_divider
                       </span>
                       {" " + recipe.portions}
                     </h4>
                   </div>
-                  <div className={modalStyles.description_recipe}>
+                  <div className={mRecipesStyles.description_recipe}>
                     <div>
-                      <h2>FM</h2>
+                      <h2 className={mRecipesStyles.initials}>FM</h2>
                     </div>
-                    <h4 className={modalStyles.description__text}>
+                    <h4 className={mRecipesStyles.description__text}>
                       {recipe.description}
                     </h4>
                   </div>
-                  <div className={modalStyles.recipe_list_steps}>
-                    <div className={modalStyles.recipe_list}>
-                      <h3>Ingredients</h3>
+                  <div className={mRecipesStyles.recipe_list_steps}>
+                    <div className={mRecipesStyles.recipe_list}>
+                      <h3 className={mRecipesStyles.content__title}>
+                        Ingredients
+                      </h3>
                       <div
                         dangerouslySetInnerHTML={{
                           __html: recipe.productList.html,
@@ -145,8 +147,10 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
                       />
                     </div>
 
-                    <div className={modalStyles.recipe__steps}>
-                      <h3>Recipes Steps</h3>
+                    <div className={mRecipesStyles.recipe__steps}>
+                      <h3 className={mRecipesStyles.content__title}>
+                        Recipes Steps
+                      </h3>
                       <div
                         dangerouslySetInnerHTML={{
                           __html: recipe.content.html,

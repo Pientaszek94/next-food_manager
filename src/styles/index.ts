@@ -1,0 +1,15 @@
+export { default as cropImageStyles } from "./crop_image.module.scss";
+export { default as favouritesStyles } from "./favourites.module.scss";
+export { default as footerStyles } from "./footer.module.scss";
+export { default as headerStyles } from "./header.module.scss";
+export { default as logoStyles } from "./logo.module.scss";
+export { default as mRecipesStyles } from "./modal_recipes.module.scss";
+export { default as mRegisterStyles } from "./modal_register.module.scss";
+export { default as postStyles } from "./post.module.scss";
+export { default as postsStyles } from "./posts.module.scss";
+export { default as profileInputsStyles } from "./profile_inputs.module.scss";
+export { default as profileStyles } from "./profile.module.scss";
+export { default as recipesTilesStyles } from "./recipes_tiles.module.scss";
+export { default as spinnerStyles } from "./spinner.module.scss";
+export { default as userDialogStyles } from "./user_dialog.module.scss";
+export { default as homePageStyles } from "./home_page.module.scss";

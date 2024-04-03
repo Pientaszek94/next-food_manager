@@ -1,5 +1,5 @@
 "use client";
-import styles from "./page.module.scss";
+import { homePageStyles } from "@/styles";
 import { useQuery } from "@apollo/client";
 import { GET_POSTS } from "@/apollocms/queries";
 import { Posts } from "@/components";
@@ -16,9 +16,9 @@ export default function Home() {
   const posts = postsApi?.data?.posts;
 
   return (
-    <div className={styles.home}>
+    <div className={homePageStyles.home}>
       <main>
-        <div className={styles.hero}>
+        <div className={homePageStyles.hero}>
           <h1>MINIMUM EFFORT MAXIMUM JOY</h1>
         </div>
         <Posts postsList={posts} userInfo={userInfo} />

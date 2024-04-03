@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import styles from "../styles/modal_register.module.scss";
+import { mRegisterStyles } from "@/styles";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useForm } from "react-hook-form";
 import { registerUser, userLogin } from "@/redux/features/authActions";
@@ -12,7 +12,7 @@ import Spinner from "./Spinner";
 function ModalRegister() {
   const registerModal = useSearchParams()!.get("registerModal");
   const pathname = usePathname();
-  const [signUp, setSignUp] = useState<boolean>(true);
+  const [signUp, setSignUp] = useState(true);
   const [customError, setCustomError] = useState<string | null>(null);
   const { loading, userInfo, error, success } = useAppSelector((state) => ({
     loading: state.auth.loading,
@@ -44,7 +44,7 @@ function ModalRegister() {
 
   if (registerModal) {
     return (
-      <div className={styles.modalregister}>
+      <div className={mRegisterStyles.modalregister}>
         <main>
           <form onSubmit={handleSubmit(submitForm)}>
             <Link href={pathname!}>BACK TO MAIN PAGE</Link>

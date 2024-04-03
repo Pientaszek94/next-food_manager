@@ -8,8 +8,7 @@ import ReactCrop, {
 import setCanvasPreview from "@/setCanvasPreview";
 import Spinner from "./Spinner";
 import { useUpdateUserMutation } from "@/redux/services/authService";
-import stylesCropImage from "../styles/crop_image.module.scss";
-import inputStyles from "../styles/profile_inputs.module.scss";
+import { cropImageStyles, profileInputsStyles } from "../styles";
 import "react-image-crop/dist/ReactCrop.css";
 import Image from "next/image";
 
@@ -92,10 +91,10 @@ function CropImage({
   };
 
   return (
-    <div className={stylesCropImage.cropimage_console}>
+    <div className={cropImageStyles.cropimage_console}>
       <input
         ref={inputRef}
-        className={inputStyles.input_file}
+        className={profileInputsStyles.input_file}
         id="input-file"
         type="file"
         accept="image/*"
@@ -118,7 +117,7 @@ function CropImage({
               src={file}
               alt="Upload"
               onLoad={onImageLoad}
-              className={stylesCropImage.reactcrop__to_cropp_image}
+              className={cropImageStyles.reactcrop__to_cropp_image}
             /> */}
             <Image
               ref={imgRef}
@@ -135,7 +134,7 @@ function CropImage({
         </div>
       ) : !error ? (
         <div>
-          <h4 className={stylesCropImage.cropimage_info}>
+          <h4 className={cropImageStyles.cropimage_info}>
             Please select your image
           </h4>
         </div>
@@ -146,7 +145,7 @@ function CropImage({
       {crop && (
         <canvas
           ref={previewCanvasRef}
-          className={stylesCropImage.cropimage__canvas}
+          className={cropImageStyles.cropimage__canvas}
           style={{
             display: "none",
             border: "1px solid black",

@@ -1,4 +1,4 @@
-import styles from "../styles/user_dialog.module.scss";
+import { userDialogStyles } from "@/styles";
 
 function Dialog({
   dialogRef,
@@ -13,7 +13,11 @@ function Dialog({
   };
 
   return (
-    <dialog id="dialog" className={styles.user_dialog} ref={dialogRef}>
+    <dialog
+      id="dialog"
+      className={userDialogStyles.user_dialog}
+      ref={dialogRef}
+    >
       <button className="small-btn cross" onClick={closeModal}>
         <span className="material-symbols-outlined">add</span>
       </button>

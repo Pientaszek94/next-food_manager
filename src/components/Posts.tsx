@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import styles from "../styles/posts.module.scss";
-import alterStyles from "../styles/recipes_tiles.module.scss";
-import { userInfoInterface } from "../../utils/interfaces";
+import { postsStyles, recipesTilesStyles } from "@/styles";
+import { PostInterface, userInfoInterface } from "../../utils/interfaces";
 import { usePathname } from "next/navigation";
 import { Post } from ".";
 
 function Posts(props: {
-  postsList: any[];
+  postsList: PostInterface[];
   userInfo?: userInfoInterface | null;
 }) {
-  const { postsList }: { postsList: any[] } = props;
+  const { postsList }: { postsList: PostInterface[] } = props;
   const [posts, setPosts] = useState<any[]>([]);
   const pathname = usePathname();
   const [postIndex, setPostIndex] = useState<number>(14);
@@ -27,28 +26,35 @@ function Posts(props: {
     setPostIndex((prevState) => prevState + 6);
   };
 
+  console.log("postsList", postsList);
   if (pathname!.includes("home")) {
     return (
-      <div className={styles.posts}>
-        <div className={styles.grid_posts}>
-          <div className={styles.first_row}>
+      <div className={postsStyles.posts}>
+        <div className={postsStyles.grid_posts}>
+          <div className={postsStyles.first_row}>
             {posts
               ?.slice(0, 3)
-              .map((post, i) => <Post {...props} post={post} key={i} />)}
+              .map((post: PostInterface, i) => (
+                <Post {...props} post={post} key={i} />
+              ))}
           </div>
-          <div className={styles.second_row}>
+          <div className={postsStyles.second_row}>
             {posts
               ?.slice(4, 7)
-              .map((post, i) => <Post {...props} post={post} key={i} />)}
+              .map((post: PostInterface, i) => (
+                <Post {...props} post={post} key={i} />
+              ))}
           </div>
         </div>
-        <div className={styles.recommand}>
+        <div className={postsStyles.recommand}>
           <span>We also recommand</span>
         </div>
-        <div className={styles.other_rows}>
+        <div className={postsStyles.other_rows}>
           {posts
             ?.slice(8, postIndex)
-            .map((post, i) => <Post {...props} post={post} key={i} />)}
+            .map((post: PostInterface, i) => (
+              <Post {...props} post={post} key={i} />
+            ))}
         </div>
         {postIndex <= posts.length && (
           <button className="button large orange" onClick={loadMore}>
@@ -59,8 +65,8 @@ function Posts(props: {
     );
   } else {
     return (
-      <div className={alterStyles.recipes}>
-        {postsList.map((post) => (
+      <div className={recipesTilesStyles.recipes}>
+        {postsList.map((post: PostInterface) => (
           <Post {...props} post={post} key={post.slug} />
         ))}
       </div>

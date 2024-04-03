@@ -1,6 +1,6 @@
 "use client";
 import styles from "../styles/post.module.scss";
-import { userInfoInterface } from "../../utils/interfaces";
+import { PostInterface, userInfoInterface } from "../../utils/interfaces";
 import { useMutation } from "@apollo/client";
 import { UPDATE_POST } from "@/apollocms/mutations";
 import {
@@ -12,9 +12,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { pullRecipe, pushRecipe } from "@/redux/features/authSlice";
 
 function Post(props: {
-  post: any;
-  postsList: any[];
-  userInfo: userInfoInterface | null | undefined;
+  post: PostInterface;
+  key: number | any;
+  postsList: PostInterface[];
+  userInfo?: userInfoInterface | null | undefined;
 }) {
   const [updatePost] = useMutation(UPDATE_POST);
   const [pushUserRecipes] = usePushUserRecipesMutation();

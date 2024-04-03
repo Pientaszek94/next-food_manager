@@ -1,20 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "../styles/header.module.scss";
+import Image from "next/image";
+import noprofile from "../../public/no-profile.svg";
+import { headerStyles } from "@/styles";
+import { userInfoInterface } from "../../utils/interfaces";
 import Logo from "./Logo";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useGetUserDetailsQuery } from "@/redux/services/authService";
 import { logout, setCredentials } from "@/redux/features/authSlice";
-import Image from "next/image";
-import noprofile from "../../public/no-profile.svg";
-import { userInfoInterface } from "../../utils/interfaces";
 import { usePathname } from "next/navigation";
 function Header() {
   const pathname = usePathname();
-  const [position, setPosition] = useState<number>(scrollY);
-  const [visible, setVisible] = useState<boolean>(true);
+  const [position, setPosition] = useState(scrollY);
+  const [visible, setVisible] = useState(true);
   const { userInfo } = useAppSelector((state) => ({
     userInfo: state.auth.userInfo as userInfoInterface | null,
   }));
@@ -39,17 +39,17 @@ function Header() {
     };
   });
 
-  const cls = visible ? styles.visible : styles.hidden;
+  const cls = visible ? headerStyles.visible : headerStyles.hidden;
 
   return (
-    <div className={`${styles.navigation} ${cls} shadow`}>
+    <div className={`${headerStyles.navigation} ${cls} shadow`}>
       <Logo />
       {isFetching ? (
-        <div className={styles.profile_menu}>
+        <div className={headerStyles.profile_menu}>
           <div>Your profile is currently loading...</div>
         </div>
       ) : userInfo !== null ? (
-        <div className={styles.profile_menu}>
+        <div className={headerStyles.profile_menu}>
           <div>
             {userInfo?.image ? (
               <Image
@@ -80,7 +80,7 @@ function Header() {
         </div>
       ) : (
         <div>
-          <Link className={styles.signIn} href="/?registerModal=true">
+          <Link className={headerStyles.signIn} href="/?registerModal=true">
             Sign Up
           </Link>
         </div>

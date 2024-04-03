@@ -1,9 +1,9 @@
-import styles from "../styles/spinner.module.scss";
+import { spinnerStyles } from "@/styles";
 
 const Spinner = () => {
   return (
-    <div className={styles.spinner} aria-label="spinner_icon">
-      <div className={styles.spinner_circle}></div>
+    <div className={spinnerStyles.spinner} aria-label="spinner_icon">
+      <div className={spinnerStyles.spinner_circle}></div>
     </div>
   );
 };

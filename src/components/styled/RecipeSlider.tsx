@@ -10,6 +10,7 @@ const RecipeSlider = styled.div<{
   display: "flex",
   flexDirection: "row",
   transition: "margin-left 1s ease-in-out",
+  // overflowX:"hidden"
 }));
 
 export default RecipeSlider;
