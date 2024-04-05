@@ -15,7 +15,7 @@ function Post(props: {
   post: PostInterface;
   key: number | any;
   postsList: PostInterface[];
-  userInfo?: userInfoInterface | null | undefined;
+  userInfo?: userInfoInterface | null;
 }) {
   const [updatePost] = useMutation(UPDATE_POST);
   const [pushUserRecipes] = usePushUserRecipesMutation();

@@ -23,18 +23,12 @@ function Profile(props: {
     userInfo?.desc ? userInfo?.desc : "",
   );
 
-  // const handleDeleteUser=async()=>{
-  //     await deleteUser().unwrap()
-  //     .then(()=>{ dispatch(logout()) })
-  // }
-
   const handleChange = async (data: any) => {
     await updateUser(data)
       .unwrap()
       .then(() => dispatch(updateUserInfo(data)));
   };
 
-  // DIALOG ONLY
   const openModal = () => {
     dialogRef.current!.showModal();
   };

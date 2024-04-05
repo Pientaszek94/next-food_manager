@@ -8,8 +8,8 @@ function Posts(props: {
   postsList: PostInterface[];
   userInfo?: userInfoInterface | null;
 }) {
-  const { postsList }: { postsList: PostInterface[] } = props;
-  const [posts, setPosts] = useState<any[]>([]);
+  const { postsList } = props;
+  const [posts, setPosts] = useState<PostInterface[]>([]);
   const pathname = usePathname();
   const [postIndex, setPostIndex] = useState<number>(14);
 
@@ -26,7 +26,6 @@ function Posts(props: {
     setPostIndex((prevState) => prevState + 6);
   };
 
-  console.log("postsList", postsList);
   if (pathname!.includes("home")) {
     return (
       <div className={postsStyles.posts}>

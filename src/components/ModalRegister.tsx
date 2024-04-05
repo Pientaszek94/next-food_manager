@@ -1,8 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { mRegisterStyles } from "@/styles";
+import { RegisteringUserInterface } from "../../utils/interfaces";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { registerUser, userLogin } from "@/redux/features/authActions";
 import Link from "next/link";
 import { redirect, usePathname, useSearchParams } from "next/navigation";
@@ -28,9 +29,9 @@ function ModalRegister() {
   }, [success, registerModal, userInfo]);
 
   const dispatch = useAppDispatch();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<RegisteringUserInterface>();
 
-  const submitForm = (data: any) => {
+  const submitForm: SubmitHandler<RegisteringUserInterface> = (data) => {
     if (signUp && data.password !== data.confirmPassword) {
       setCustomError("Password mismatch");
     }

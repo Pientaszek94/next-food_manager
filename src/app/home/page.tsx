@@ -12,7 +12,6 @@ export default function Home() {
     (state) => state.auth.userInfo,
   );
   const postsApi = useQuery(GET_POSTS);
-  console.log("postApi", postsApi);
   const posts = postsApi?.data?.posts;
 
   return (

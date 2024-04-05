@@ -14,7 +14,7 @@ export interface userInfoInterface {
   email: string | null;
   image?: string | null;
   name: string | null;
-  recipes?: any;
+  recipes?: string[] | null;
   token?: string | null;
   _id: string | null;
 }

@@ -1,5 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { AuthStateInterface } from "../../../utils/interfaces";
+import {
+  AuthStateInterface,
+  userInfoInterface,
+} from "../../../utils/interfaces";
 import { registerUser, userLogin } from "./authActions";
 import { deleteCookie, getCookie, hasCookie } from "cookies-next";
 
@@ -37,7 +40,7 @@ const authSlice = createSlice({
     },
     pullRecipe: (state, { payload }: PayloadAction<string>) => {
       state.userInfo = {
-        ...(state.userInfo as any),
+        ...(state.userInfo as userInfoInterface),
         recipes: state.userInfo!.recipes.filter(
           (recipe: string) => recipe != payload,
         ),

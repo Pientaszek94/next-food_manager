@@ -7,6 +7,7 @@ import { useAppSelector } from "@/redux/hooks";
 import { useGetUserDetailsQuery } from "@/redux/services/authService";
 import { useQuery } from "@apollo/client";
 import React from "react";
+import { PostInterface } from "../../../utils/interfaces";
 
 function UserProfile() {
   const userInfo = useAppSelector(({ auth }) => auth.userInfo);
@@ -15,14 +16,13 @@ function UserProfile() {
   });
   const postsApi = useQuery(GET_POSTS);
   const posts = postsApi?.data?.posts;
-  console.log("POst", postsApi);
 
   if (!isFetching) {
     if (userInfo !== null && userInfo.active) {
       return (
         <Profile
           userInfo={userInfo}
-          postsList={posts?.filter((post: any) => {
+          postsList={posts?.filter((post: PostInterface) => {
             const isIndex = userInfo?.recipes?.findIndex(
               (recipe: string) => post.slug == recipe,
             );

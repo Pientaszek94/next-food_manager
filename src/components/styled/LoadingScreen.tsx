@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Spinner from "../Spinner";
 
 const LoadingScreen = styled.div`
   width: 99vw;

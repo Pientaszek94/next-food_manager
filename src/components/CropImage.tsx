@@ -1,13 +1,14 @@
 import React, { useState, useRef, ChangeEvent } from "react";
 import ReactCrop, {
+  Crop,
   PercentCrop,
+  PixelCrop,
   centerCrop,
   convertToPixelCrop,
   makeAspectCrop,
 } from "react-image-crop";
 import setCanvasPreview from "@/setCanvasPreview";
 import Spinner from "./Spinner";
-import { useUpdateUserMutation } from "@/redux/services/authService";
 import { cropImageStyles, profileInputsStyles } from "../styles";
 import "react-image-crop/dist/ReactCrop.css";
 import Image from "next/image";
@@ -26,20 +27,19 @@ function CropImage({
   error: any;
   dialogRef: any;
 }) {
-  const imgRef = useRef<any>(null);
-  const inputRef = useRef<any>();
-  const previewCanvasRef = useRef<any>(null);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const previewCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [file, setFile] = useState("");
-  const [crop, setCrop] = useState<any>();
-  const [updateUser, { isLoading }] = useUpdateUserMutation();
-
+  const [crop, setCrop] = useState<Crop>();
+  const [isLoading, setIsLoading] = useState(false);
   const closeModal = () => {
     dialogRef.current.close();
     setFile("");
   };
 
   const resetInput = () => {
-    inputRef.current.value = null;
+    inputRef.current = null;
   };
 
   const handleSelectImage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +47,7 @@ function CropImage({
   };
 
   const onImageLoad = (e: any) => {
+    setIsLoading(false);
     const { width, height } = e.currentTarget;
     if (width < 150 || height < 150) {
       setFile("");
@@ -69,20 +70,20 @@ function CropImage({
   };
 
   const croppAndUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setIsLoading(true);
     setCanvasPreview(
-      imgRef.current, // HTMLImageElement
-      previewCanvasRef.current, // HTMLCanvasElement
-      convertToPixelCrop(crop, imgRef.current.width, imgRef.current.height),
+      imgRef.current!,
+      previewCanvasRef.current!,
+      convertToPixelCrop(crop, imgRef.current!.width, imgRef.current!.height),
     );
-    const dataUrl = previewCanvasRef.current.toDataURL();
+    const dataUrl = previewCanvasRef.current!.toDataURL();
 
     handleChange({ image: dataUrl })
       .then(() => {
         setFile("");
         closeModal();
       })
-      .catch((error: any) => {
-        console.log("NBRRRO");
+      .catch(() => {
         setError("Something went wrong!  Please try again another time.");
         setFile("");
       });
@@ -112,13 +113,6 @@ function CropImage({
             aspect={ASPECT_RATIO}
             minWidth={MIN_DIMENSION}
           >
-            {/* <img
-              ref={imgRef}
-              src={file}
-              alt="Upload"
-              onLoad={onImageLoad}
-              className={cropImageStyles.reactcrop__to_cropp_image}
-            /> */}
             <Image
               ref={imgRef}
               src={file}
@@ -128,9 +122,13 @@ function CropImage({
               height={900 / 2}
             />
           </ReactCrop>
-          <button className="orange long" onClick={croppAndUpdate}>
-            {isLoading ? <Spinner /> : "Set as a profile image"}
-          </button>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <button className="orange long" onClick={croppAndUpdate}>
+              Set as a profile image
+            </button>
+          )}
         </div>
       ) : !error ? (
         <div>

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const RecipePreviewSLider = styled.div<{
-  $postsLength: number | null | undefined;
-  $checkedIndex: number | null | undefined;
+  $postsLength?: number | null;
+  $checkedIndex?: number | null;
 }>((props) => ({
   width: "100%",
   height: `${47 * props.$postsLength!}px`,

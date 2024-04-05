@@ -1,12 +1,13 @@
 "use client";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { mRecipesStyles } from "@/styles";
 import Logo from "./Logo";
-import RecipePreviewSLider from "./styled/RecipePreviewSlider";
+import { mRecipesStyles } from "@/styles";
 import { RecipeSlider } from "./styled";
+import RecipePreviewSLider from "./styled/RecipePreviewSlider";
+import { PostInterface } from "../../utils/interfaces";
 
-function ModalRecipe({ postsList }: { postsList: any[] }) {
+function ModalRecipe({ postsList }: { postsList: PostInterface[] }) {
   const recipe = useSearchParams()!.get("recipe");
   const pathname = usePathname();
   const router = useRouter();
@@ -23,8 +24,6 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
   };
 
   const prevRecipe = () => {
-    if (currentRecipe == 0) {
-    }
     router.push(pathname + "?recipe=" + postsList[currentRecipe! - 1]?.slug);
   };
 
@@ -78,7 +77,7 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
           </button>
           <button
             className={mRecipesStyles.transp_bg}
-            onClick={() => router.push(pathname!)}
+            onClick={() => router.push(pathname)}
           >
             <span className="material-symbols-outlined">close</span>
           </button>
@@ -149,7 +148,7 @@ function ModalRecipe({ postsList }: { postsList: any[] }) {
 
                     <div className={mRecipesStyles.recipe__steps}>
                       <h3 className={mRecipesStyles.content__title}>
-                        Recipes Steps
+                        Recipe Steps
                       </h3>
                       <div
                         dangerouslySetInnerHTML={{

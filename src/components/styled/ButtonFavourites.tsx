@@ -9,5 +9,3 @@ const ButtonFavourites = styled.button<{
 }));
 
 export default ButtonFavourites;
-
-// border-bottom: ${props=>props.$categoryIndex==props.$buttonIndex?"2px solid orange":"none"};
